@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         // Check for unique username and email
-        checkUnique(req, res, async () => {
+        // checkUnique(req, res, async () => {
             // Continue with registration logic if all validations pass
             db.query('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', [username, hashedPassword, email], (err, results) => {
                 if (err) {
@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
                 res.status(201).json({ id: results.insertId, username,  result: results }); // Respond with created user data
             });
 
-        });
+        // });
 
     } catch (error) {
         console.log(error);
@@ -100,3 +100,6 @@ router.get('/', authenticateJWT, (req, res) => {
 
 // Export the router
 module.exports = router;
+
+
+// everything is a test.
